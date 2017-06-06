@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "NSCalendar+Category.h"
 
 @interface ViewController ()
 
@@ -14,16 +15,29 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+ 
+    [self test];
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)test
+{
+    NSDateComponents * dateComponents = [NSCalendar components:KKDefaultCalendarUnit fromDate:@"2017-05-23 23:59:59" toDate:[NSDate getStringFromDate:[NSDate date] format:KKDateFormatyyyyMMddHHmmss] dateFormat:KKDateFormatyyyyMMddHHmmss options:NSCalendarWrapComponents];
+    
+    NSLog(@" %@ ",dateComponents);
+    
+    
+    dateComponents = [[NSCalendar currentCalendar]components:KKDefaultCalendarUnit fromDate:[NSDate getDateFromString:@"2017-05-23 23:59:59" format:KKDateFormatyyyyMMddHHmmss] toDate:[NSDate date] options:NSCalendarWrapComponents];
+
+    NSLog(@" %@ ",dateComponents);
+
 }
+
+
 
 
 @end
